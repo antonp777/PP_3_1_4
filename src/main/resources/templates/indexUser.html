@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:insert="~{general.html::head}"></div>
+    <title>User page</title>
+</head>
+<body style="height: 100vh">
+    <div class="row m-0">
+        <div class="col-12 p-0" th:insert="~{general.html :: header}"></div>
+        <div class="col-2 p-0" style="height: 95vh">
+            <div class="list-group list-group-flush my-3">
+                <div th:each="role: ${user.getRole()}"
+                     th:switch="${role.getName()}">
+                    <a th:case = "'ROLE_ADMIN'" href="#" class="list-group-item list-group-item-action border border-0" th:href="@{/admin}">
+                        Admin
+                    </a>
+                </div>
+                <a href="#" class="list-group-item list-group-item-action active"  aria-current="true">User</a>
+            </div>
+        </div>
+        <div class="col bg-light start-10">
+            <div class="p-3 "><h2>User information-page</h2></div>
+            <div class="p-0 mx-3 border bg-white">
+                <div class="p-2 bg-light border-bottom border-1 fs-4 fw-bold">About user</div>
+                <div class="p-4">
+                    <table class="table table-striped m-0">
+                        <thead class="border-top border-2">
+                            <tr class=" border-bottom border-white text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Фамилия</th>
+                                <th scope="col">Возраст</th>
+                                <th scope="col">Логин</th>
+                                <th scope="col">Роль</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-bottom border-white text-center">
+                                <th scope="row" th:text="${user.getId()}"></th>
+                                <td th:text="${user.getName()}">...</td>
+                                <td th:text="${user.getSername()}">...</td>
+                                <td th:text="${user.getAge()}">...</td>
+                                <td th:text="${user.getUsername()}">...</td>
+                                <td th:text="${{user.getRole()}}">...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
